@@ -3,7 +3,7 @@ gem 'jekyll', '3.7.4'
 
 group :jekyll_plugins do
   gem "github-pages", '197'
-  gem 'octopress-codeblock'
+  #gem 'octopress-codeblock'
   gem 'jekyll-paginate'
 end
 
