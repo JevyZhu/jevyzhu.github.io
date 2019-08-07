@@ -243,7 +243,9 @@ sudo kubectl get pods --all-namespaces
 
 ```
 
-{% codeblock title:"output" %}
+
+``` bash
+
 NAMESPACE     NAME                                 READY   STATUS    RESTARTS   AGE
 kube-system   coredns-5c98db65d4-5p58j             1/1     Running   0          40m
 kube-system   coredns-5c98db65d4-7z4dx             1/1     Running   0          40m
@@ -253,4 +255,5 @@ kube-system   kube-controller-manager-k8s.master   1/1     Running   0          
 kube-system   kube-flannel-ds-amd64-gdzcl          1/1     Running   0          28m
 kube-system   kube-proxy-67wdl                     1/1     Running   0          40m
 kube-system   kube-scheduler-k8s.master            1/1     Running   0          39m
-{% endcodeblock %}
+
+```
