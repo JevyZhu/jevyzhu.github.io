@@ -1,4 +1,5 @@
 # --- General options --- #
+future: true
 
 # Name of website
 title: Jevy's Fool
@@ -21,8 +22,6 @@ description: A simple tekkie
 # List of links in the navigation bar
 navbar-links:
   About Me: "aboutme"
-  #Resources:
-  #  - Learn markdown: "http://www.markdowntutorial.com/"
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
@@ -243,9 +242,12 @@ prose:
           label: "Publish"
           help: "Check to publish post, uncheck to hide."
 
+#plugins_dir: ./_scripts
+
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
+  - octopress-codeblock
 
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189

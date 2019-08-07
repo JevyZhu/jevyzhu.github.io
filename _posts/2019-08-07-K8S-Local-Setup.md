@@ -19,9 +19,7 @@ For those prefer simplest toy, [minikuber](https://github.com/kubernetes/minikub
 
 **Please note** for master node it **MUST have at least 2 CPUs**. 
 
-
-
-![image 2CPUS](/media/2cpus_vbox.png)
+![image](/assets/images/2cpus-vbox.png)
 
 
 
@@ -38,9 +36,6 @@ For those prefer simplest toy, [minikuber](https://github.com/kubernetes/minikub
 
 
 Download **Ubuntu Server 18.04.2 LTS** from [here](https://ubuntu.com/download/server) to local machine, then use [virtualbox](https://www.virtualbox.org/) to create a new virtual machine. Enable OpenSSH server installed in step 7 so we can SSH client to connect to for convenience.
-
-![image SSH](/media/openssh_ubuntu.png)
-
 
 
 ### Disable selinux, swap and firewall
@@ -244,6 +239,9 @@ sudo  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/D
 # check all good
 sudo kubectl get pods --all-namespaces
 
+```
+
+{% codeblock title:"output" %}
 NAMESPACE     NAME                                 READY   STATUS    RESTARTS   AGE
 kube-system   coredns-5c98db65d4-5p58j             1/1     Running   0          40m
 kube-system   coredns-5c98db65d4-7z4dx             1/1     Running   0          40m
@@ -253,4 +251,4 @@ kube-system   kube-controller-manager-k8s.master   1/1     Running   0          
 kube-system   kube-flannel-ds-amd64-gdzcl          1/1     Running   0          28m
 kube-system   kube-proxy-67wdl                     1/1     Running   0          40m
 kube-system   kube-scheduler-k8s.master            1/1     Running   0          39m
-```
+{% endcodeblock %}
