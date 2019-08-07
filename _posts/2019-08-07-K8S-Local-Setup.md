@@ -40,7 +40,8 @@ Download **Ubuntu Server 18.04.2 LTS** from [here](https://ubuntu.com/download/s
 
 ### Disable selinux, swap and firewall
 
-```bash
+{% highlight bash %}
+
 # Disable selinux
 sudo apt install selinux-utils
 sudo setenforce 0
@@ -51,7 +52,8 @@ sudo ufw disable
 # Disable swap
 sudo swapoff -a
 sudo sed -i 's/\s\+swap/\n\#swap/g' /etc/fstab
-```
+
+{% endhighlight %}
 
 
 
@@ -61,7 +63,7 @@ Though K8S support multiple container runtimes like Docker, CRI-O and Containerd
 
 #### Install Docker-CE
 
-```baseh
+```bash
 sudo apt update && sudo apt install apt-transport-https ca-certificates curl software-properties-common
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -204,7 +206,7 @@ to make sure install is ok.
 # change name
 
 
-```
+```bash
 
 sudo hostnamectl set-hostname XXX
 

@@ -664,10 +664,21 @@ table tr td :last-child {
 
 /* --- Code blocks --- */
 
-pre {
+pre{
   font-size: 16px;
   line-height: 1.5em;
+  overflow:auto;
+  white-space: pre;
+  overflow-x: scroll;
+  overflow-y: scroll;
 }
+
+pre code{
+  white-space: pre;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+
 .highlight pre {
   border: none;
   background: none;
@@ -786,3 +797,4 @@ pre {
   font-style: italic;
   font-size: 16px;
 }
+
