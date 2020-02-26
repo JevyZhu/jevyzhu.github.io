@@ -205,14 +205,10 @@ GEM
       jekyll-seo-tag (~> 2.1)
     minitest (5.11.3)
     multipart-post (2.1.1)
-    nokogiri (1.10.3)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     octokit (4.14.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    octopress-code-highlighter (4.3.0)
-      jekyll (~> 3.0)
-    octopress-codeblock (1.0.5)
-      octopress-code-highlighter (~> 4.2)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     public_suffix (3.1.1)
@@ -249,7 +245,6 @@ DEPENDENCIES
   github-pages (= 197)
   jekyll (= 3.7.4)
   jekyll-paginate
-  octopress-codeblock
 
 BUNDLED WITH
    2.1.0.pre.1
