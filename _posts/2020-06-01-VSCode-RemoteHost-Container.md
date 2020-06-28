@@ -32,41 +32,39 @@ On the **remote host** running docker.
 
 # Prepare Desktop
 ## Install Open SSH Client
-### For Linux/Mac
+### For Linux/Mac/MSYS2
 Use package manager to install
-### For Windows
+### For Win7
 1. Download OpenSSH binary for windows from [here](https://github.com/PowerShell/Win32-OpenSSH/releases)
-
 2. Unzip it to a directory, e.g. C:\OpenSSH
-
 3. Add C:\OpenSSH to Path environment 
-
 4. Open **cmd** as administrator, run command
    ```bash
    C:> ssh-agent 
    ```
    to verify it can be found.
+### For Win10
+It can use [build-in openssh](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse)
 
 ## Start ssh-agent
-### For Linux/Mac
+### For Linux/Mac/MSYS2
 Most of time it has ssh-agent automatically running if not run command:
 ```bash
  eval "$(ssh-agent -s)"
 ```
-### For Windows
+### For Win7
 In `PowerShell` as administrator:
-
 ```bash
 Set-Service ssh-agent -StartupType Automatic
 ```
 Then open [Windows Task Manger] --> [Services] Tab -> Make the ssh-agent started
 
-**Note:** for Win10, it can use [build-in openssh](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse) to replace above steps.
+### For Win10
+ssh-agent automatically running after openssh enabled
+
 
 ## Generate ssh key
-
 Run `ssh-keygen` to generate key pair.
-
 ```bash
 ssh-keygen
 ```
@@ -76,7 +74,8 @@ By default following prompt it will generate public/private keys in `%USERPROFIL
 
 Upload `id_rsa.pub` to docker host  as  `~/.ssh/authorized_keys`, and verify key pair work fine:
 ```bash
-ssh -i id_rsa <user>@<host>
+ssh-add id_rsa
+ssh <user>@<host>
 ```
 Now client should be able to login the remote host without password prompt.
 
@@ -87,9 +86,9 @@ Now client should be able to login the remote host without password prompt.
 
 Use package manager to install
 
-#### For Windows
+#### For Windows/MSYS2
 Choose one of options:
-* Install [docker desktop for windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows), -- but it **not necessary!** 
+* Install [docker desktop for windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows), -- but **not necessary!** 
 * Just download [docker.exe](https://github.com/StefanScherer/docker-cli-builder/releases/) and put it into a directory of %Path% environment.
 
 
@@ -191,6 +190,7 @@ In this way, it has Dockerfile and VS config locally but other source code remot
 # Extra-links
 
 1.  VSCode [Advanced Container Configuration](https://code.visualstudio.com/docs/remote/containers-advanced)
-2. GitHub [microsoft/vscode-dev-containers](https://github.com/microsoft/vscode-dev-containers)
-3. GitHub [microsoft/vscode-remote-try-python](https://github.com/microsoft/vscode-remote-try-python)
+2.  Official samples 
+    *  [microsoft/vscode-dev-containers](https://github.com/microsoft/vscode-dev-containers) 
+    *  [microsoft/vscode-remote-try-python](https://github.com/microsoft/vscode-remote-try-python)
 
