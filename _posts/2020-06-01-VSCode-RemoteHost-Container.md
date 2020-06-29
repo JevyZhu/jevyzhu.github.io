@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Setup VSCode use Container on Remote Host
+title: "Setup VSCode to use Container on Remote Host"
 ---
 
 > A quick start to use  **container on remote host  ** for development.
@@ -14,25 +14,25 @@ On the **remote host** running docker.
    ```bash
     {"hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]}
    ```
-2. Add `/etc/systemd/system/docker.service.d/override.conf`
+2. Create file`/etc/systemd/system/docker.service.d/override.conf`:
    ```bash
     [Service]
     ExecStart=
     ExecStart=/usr/bin/dockerd
    ```
-3. Reload the systemd daemon:
+3. Reload the daemon and restart:
 
    ```bash
     systemctl daemon-reload
-   ```
-4. Restart docker:
-   ```bash
-    systemctl restart docker.service
+    systemctl restart docker.service 
    ```
 
+
+
 # Prepare Desktop
+
 ## Install Open SSH Client
-### For Linux/Mac/MSYS2
+### For Linux/Mac
 Use package manager to install
 ### For Win7
 1. Download OpenSSH binary for windows from [here](https://github.com/PowerShell/Win32-OpenSSH/releases)
@@ -47,7 +47,7 @@ Use package manager to install
 It can use [build-in openssh](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse)
 
 ## Start ssh-agent
-### For Linux/Mac/MSYS2
+### For Linux/Mac
 Most of time it has ssh-agent automatically running if not run command:
 ```bash
  eval "$(ssh-agent -s)"
@@ -86,13 +86,13 @@ Now client should be able to login the remote host without password prompt.
 
 Use package manager to install
 
-#### For Windows/MSYS2
+#### For Windows
 Choose one of options:
-* Install [docker desktop for windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows), -- but **not necessary!** 
+* Install [docker desktop for windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows), -- **not recommended!** 
 * Just download [docker.exe](https://github.com/StefanScherer/docker-cli-builder/releases/) and put it into a directory of %Path% environment.
 
 
-###  Set up docker context (optional)
+###  Set up docker context
 Open `cmd` as administrator and create docker context
 ```bash
 docker context create <context name> --docker "host=ssh://<user>@<host>"
