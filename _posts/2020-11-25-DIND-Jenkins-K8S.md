@@ -35,7 +35,7 @@ Docker provides an official docker-in-docker image in docker hub.  So we can use
 
 
 
-## Use Docker In Dind Itself
+## Use Docker In docker:dind
 
 Here is the mini code need to run docker-in-docker.
 
@@ -67,7 +67,7 @@ securityContext:
   privileged: true
 ```
 
-By default, the DOCKER_HOST is not set in above `dind` container. So then command `docker...` was run, it automatically connect to docker daemon by */var/run/docker.sock*.
+By default, the DOCKER_HOST is not set in above `dind` container. So when command `docker...` was run, it automatically connect to docker daemon by */var/run/docker.sock*.
 
 Here it is running docker command in `dind` container, which has the docker-daemon running in same container also. 
 
@@ -77,7 +77,7 @@ However what if people want to run docker command from other containers in the s
 
 ## Use Docker From Other Containers
 
-### By TCP Port
+### Through TCP Port
 
 By default, docker::dind has `dockerd-entrypoint.sh` as entry-point. 
 
@@ -96,7 +96,7 @@ TLS is boring - to connect to it  the client must provide certificate. Here let'
 
 There are two ways to do it: unset environment variable or overwrite entry-point of `dind`.
 
-####  Use Environment
+#### By Environment
 `DOCKER_TLS_CERTDIR` is being used by docker:dind to store tls cert, if set to  empty, then tsl would be disabled automatically. I
 
 In following code, the environment is set to empty and also another new container named `demo`, which uses alpine's **docker-cli** client image, is added into pod.
@@ -138,7 +138,7 @@ spec:
 
 
 
-#### Customize Entry-Point
+#### By Custom Entry-Point
 
 Remember that default entry-point of docker:dind  is `dockerd-entrypoint.sh`, this script finally call dockerd as a service.
 
@@ -180,7 +180,7 @@ Here port `8989` is set as the docker-daemon's listen port by passing `--host` v
 
 
 
-### By Unix-Domain Socket
+### Through Unix-Domain Socket
 
 All containers in one pod  are in same host so they can share files in the host. By mounting host's directory and put local socket file there, it is easy to have docker daemon accessible to all containers. Basically here two steps needed:
 
@@ -237,11 +237,10 @@ Here the code makes `dind` container to listen on unix-domain socket through fil
 
 ## TCP vs Unix-Domain Socket
 
-There is no big difference except that local socket should have better performance because it is more like read/write local file.
+There is no big difference. But local socket should have better performance because it is more like read/write local file.
 
 
-
-# Wait Docker-Daemon Up
+# Wait Docker-Daemon Up !
 
 So far it looks pretty good. But actually there is a potential problem: 
 
@@ -283,9 +282,9 @@ def docker_host_sock = "unix://${shared_mount_point}/docker.sock"
 
 
 
-# Better Security !
+# Security !
 
-Running `dind` in privileged mode is not safe. 
+Running `dind` in privileged mode is **NOT SAFE**. 
 
 By replacing docker:dind by `docker:dind-rootless`, the `dind` container can run as a normal user - this makes it safer.
 
